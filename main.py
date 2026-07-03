@@ -8,7 +8,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
 
 
-def change_margin(
+def add_margin(
     pdfpath: str = "",
     lmargin: int = 0,
     rmargin: int = 0,
@@ -50,5 +50,9 @@ def change_margin(
     c.save()
 
 
-if __name__ == "__main__":
+def main():
     pass
+
+
+if __name__ == "__main__":
+    main()
