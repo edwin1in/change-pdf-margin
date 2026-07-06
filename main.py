@@ -6,8 +6,10 @@ from pdf2image.exceptions import (
 )
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
+from gui import *
 import warnings
 import argparse
+import sys
 
 parser = argparse.ArgumentParser(
     prog="main.py", description="add margins to PDF file(s)"
@@ -90,13 +92,19 @@ def units_to_px(
 def main():
     args = parser.parse_args()
 
-    margins = units_to_px(
-        args.unit, (args.lmargin, args.rmargin, args.tmargin, args.bmargin)
-    )
+    if len(sys.argv) == 1:
+        app = QApplication([])
+        window = Window()
+        window.show()
+        app.exec()
+    else:
+        margins = units_to_px(
+            args.unit, (args.lmargin, args.rmargin, args.tmargin, args.bmargin)
+        )
 
-    if args.output is None:
-        args.output = args.path.rsplit(".", 1)[0]
-    add_margin(args.path, *margins, args.output)
+        if args.output is None:
+            args.output = args.path.rsplit(".", 1)[0]
+        add_margin(args.path, *margins, args.output)
 
 
 if __name__ == "__main__":
