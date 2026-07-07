@@ -96,6 +96,23 @@ def main():
         app = QApplication([])
         window = Window()
         window.show()
+        window.button.clicked.connect(
+            lambda: add_margin(
+                window.selected_file,
+                *(
+                    units_to_px(
+                        window.unit.currentText(),
+                        (
+                            window.lmargin.value(),
+                            window.rmargin.value(),
+                            window.tmargin.value(),
+                            window.bmargin.value(),
+                        ),
+                    )
+                ),
+                window.output_filename.text(),
+            )
+        )
         app.exec()
     else:
         margins = units_to_px(
