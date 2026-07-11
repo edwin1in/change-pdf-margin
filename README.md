@@ -39,3 +39,43 @@ Most distros ship with `pdftoppm` and `pdftocairo`. If they are not installed, r
 >1. Install poppler: `conda install -c conda-forge poppler`
 
 >2. Install pdf2image: `pip install pdf2image`
+
+## Usage
+Run the script without any arguments to launch the GUI:
+```bash
+python main.py 
+```
+To run without the GUI:
+```bash
+python main.py --path="path/to/file.pdf" [OPTIONS]
+```
+## Command-line Options
+| Option | Description | Default |
+|--------|-------------|---------|
+| `-h`, `--help` | Show the help message and exit. | - |
+| `--path PATH` | Path to the input PDF file. **Required** when running in CLI mode. | - |
+| `--lmargin LMARGIN` | Set the left margin size. | `0` |
+| `--rmargin RMARGIN` | Set the right margin size. | `0` |
+| `--tmargin TMARGIN` | Set the top margin size. | `0` |
+| `--bmargin BMARGIN` | Set the bottom margin size. | `0` |
+| `--unit {px,in,cm,mm}` | Unit used for all margin values. | `px` |
+| `--output OUTPUT` | Name or path of the output PDF file. If omitted, the original PDF file is overwritten. | Original file |
+
+
+## Example
+
+The following example uses a page from *Martin Schechter – Principles of Functional Analysis (Second Edition)*.
+
+**Original**
+
+![Original page](./img/original.png)
+
+Run the following command to add a 10-inch right margin:
+
+```bash
+python main.py --path="path/to/file.pdf" --rmargin=10 --unit=in
+```
+
+**Output**
+
+![Page with increased right margin](./img/increasedmargin.png)
